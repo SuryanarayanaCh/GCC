@@ -8,7 +8,6 @@ import { auth, db } from "../firebase";
 import moment from 'moment';
 import { IconButton } from "@material-ui/core";
 import { SendOutlined } from "@material-ui/icons";
-import {FieldValue} from "firebase-admin/firestore";
 import Navbar from "../Components/Navbar"
 //import {Map} from'./Map';
 import "./Class.css";
@@ -69,16 +68,6 @@ function Class() {
     if (!user) history("/dashboard");
   }, [loading, user]);
 
-  const handleDelete = async (i) => {
-    console.log("hello deleting "+i);
-    const ref = db.collection('classes').doc(id);
-    const res = await ref.update({
-      posts: FieldValue.delete()
-    })
-  }
-
-  // console.log(classData);
-  // console.log(user);
   return (
     <>
     <Navbar />
@@ -108,7 +97,6 @@ function Class() {
           name={post.name}
           key={ind}
         />
-        <div onClick={(e) => {handleDelete(ind)}}>delete</div>
         </>
       ))}
     </div>
