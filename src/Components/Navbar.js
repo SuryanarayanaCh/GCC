@@ -31,12 +31,12 @@ function Navbar() {
           <IconButton>
             <MenuIcon />
           </IconButton>
-          <img
+          {/* <img
             src="https://1000logos.net/wp-content/uploads/2021/05/Google-logo.png"
             alt="Google Logo"
             className="navbar__logo"
-          />{" "}
-          <span>Classroom</span>
+          />{" "} */}
+          <span className="Digi">DiGi Classroom</span>
         </div>
         <div className="navbar__right">
           <IconButton

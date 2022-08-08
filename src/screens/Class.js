@@ -4,11 +4,15 @@ import { useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate, useParams } from "react-router-dom";
 import Announcement from "../Components/Announcement";
-import { auth, db } from "../firebase";
+import { auth, db, storage } from "../firebase";
 import moment from 'moment';
 import { IconButton } from "@material-ui/core";
 import { SendOutlined } from "@material-ui/icons";
+import AttachFileIcon from '@material-ui/icons/AttachFile';
 import Navbar from "../Components/Navbar"
+import { ref, uploadBytes, getDownloadURL} from "firebase/storage";
+import { v4 } from "uuid";
+
 //import {Map} from'./Map';
 import "./Class.css";
 function Class() {
@@ -16,6 +20,9 @@ function Class() {
   const [announcementContent, setAnnouncementContent] = useState("");
   const [posts, setPosts] = useState([]);
   const [user, loading, error] = useAuthState(auth);
+  const [fileUpload, setFileUpload]=useState("");
+  const [fileUrl, setFileUrl] = useState("");
+  const [fileType, setFileType] = useState("");
   const { id } = useParams();
   const history = useNavigate();
 
@@ -24,6 +31,25 @@ function Class() {
     let reversedArray = classData?.posts?.reverse();
     setPosts(reversedArray);
   }, [classData]);
+
+  const uploadFile= () => {
+    if (fileUpload == null) return;
+    
+    setFileType(fileUpload.name.split('.')[1])
+
+    const fileRef = ref(storage, `images/${fileUpload.name + v4()}`);
+    uploadBytes( fileRef, fileUpload).then((snapshot) => {
+      alert("File Uploaded Successfully")
+
+      getDownloadURL(snapshot.ref).then((url) => {
+        console.log(url);
+        setFileUrl(url);
+      });
+
+    });
+    setFileUpload("")
+  };
+
   const createPost = async () => {
     if(announcementContent == "")
     {
@@ -40,7 +66,8 @@ function Class() {
         content: announcementContent,
         date: moment().format("MMM D, YYYY"),
         // date: moment().format("Do MM YY"),
-        
+        fileUrl: fileUrl,
+        fileType: fileType,
         image: user.photoURL,
         name: user.displayName,
       });
@@ -48,11 +75,14 @@ function Class() {
         posts: tempPosts,
       });
       setAnnouncementContent("")
+      setFileType("");
+      setFileUrl("");
     } catch (error) {
       console.error(error);
       alert(`There was an error posting the announcement, please try again!`);
     }
   };
+
   useEffect(() => {
     db.collection("classes")
       .doc(id)
@@ -83,6 +113,14 @@ function Class() {
           onChange={(e) => setAnnouncementContent(e.target.value)}
           placeholder="Announce something to your class"
         />
+        <input 
+          type='file' 
+          onChange={(event) => {
+            setFileUpload(event.target.files[0]);
+        }}/>
+        <IconButton onClick={uploadFile}>
+          <AttachFileIcon />
+        </IconButton>
         <IconButton onClick={createPost}>
           <SendOutlined />
         </IconButton>
@@ -95,6 +133,8 @@ function Class() {
           date={post.date}
           image={post.image}
           name={post.name}
+          file={post.fileUrl}
+          fileType={post.fileType}
           key={ind}
         />
         </>

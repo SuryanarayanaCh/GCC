@@ -1,6 +1,7 @@
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/firestore';
 import 'firebase/compat/auth';
+import { getStorage } from "firebase/storage";
 
 // import { useEffect } from 'react';
 // import { useAuthState } from "react-firebase-hooks/auth";
@@ -30,6 +31,7 @@ const firebaseConfig = {
 const app = firebase.initializeApp(firebaseConfig);
 const auth = app.auth();
 const db = app.firestore();
+const storage=getStorage(app)
 
 
 
@@ -61,7 +63,5 @@ const SignInWithGoogle = async () => {
 
 const Logout = () => {
   auth.signOut();
-  
- 
 };
-export { app, auth, db, SignInWithGoogle, Logout};
+export { app, auth, db, storage, SignInWithGoogle, Logout};

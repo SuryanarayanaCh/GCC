@@ -26,6 +26,8 @@ import {
         if (!classRef.exists) {
           return alert(`Class doesn't exist, please provide correct ID`);
         }
+        // const ref=await db.collection("classes").select("creatorUId").get()
+        //console(ref)
         const classData = await classRef.data();
         // add class to user
         const userRef = await db.collection("users").where("uid", "==", user.uid);

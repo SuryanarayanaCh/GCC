@@ -1,8 +1,14 @@
 import { IconButton } from "@material-ui/core";
 import { Menu, MoreVert } from "@material-ui/icons";
+import pdfLogo from "../Images/pdfLogo.png";
+
 import React from "react";
 import "./Announcement.css";
-function Announcement({ image, name, date, content, authorId }) {
+function Announcement({ image, name, date, content, authorId, file, fileType }) {
+  const gotoPdf = (url) => {
+    console.log(url);
+    window.open(url, '_blank', 'noopener,noreferrer');
+  }
   return (
     <div className="announcement">
       <div className="announcement__informationContainer">
@@ -22,6 +28,10 @@ function Announcement({ image, name, date, content, authorId }) {
         </div>
       </div>
       <div className="announcement__content">{content}</div>
+      {
+        (fileType === "jpg" || fileType === "jpeg" || fileType === "png") ?
+        <img src={file} /> : (fileType == "pdf") ? <img src={pdfLogo} className="pdf__logo" onClick = {() => gotoPdf(file)}/> :(fileType == "") ? <div>No file attached</div>: <div>file not supported</div>
+      }
     </div>
   );
 }

@@ -33,3 +33,12 @@
   .announcement__content {
     margin-top: 15px;
   }
+
+  .pdf__logo {
+    width: 150px;
+    height:150px;
+    border-radius: 5px;
+    margin-top: 20px;
+    margin-left: auto;
+    cursor: pointer;    
+  }
