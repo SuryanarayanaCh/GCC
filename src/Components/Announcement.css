@@ -42,3 +42,14 @@
     margin-left: auto;
     cursor: pointer;    
   }
+
+  .uploaded_img {
+
+    width: 150px;
+    height:150px;
+    border-radius: 5px;
+    margin-top: 20px;
+    margin-left: auto;
+      
+
+  }

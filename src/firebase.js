@@ -52,6 +52,7 @@ const SignInWithGoogle = async () => {
       // create a new user
       await db.collection("users").add({
         uid: user.uid,
+        creatorName: user.displayName,
         enrolledClassrooms: [],
       });
     }
