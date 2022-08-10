@@ -17,6 +17,8 @@ function CreateClass() {
   const [user, loading, error] = useAuthState(auth);
   const [open, setOpen] = useRecoilState(createDialogAtom);
   const [className, setClassName] = useState("");
+  const [creatorName, setcreatorName] = useState("")
+  const [coursecode, setcoursecode] = useState("")
   const handleClose = () => {
     setOpen(false);
   };
@@ -32,9 +34,11 @@ function CreateClass() {
       }
       console.log(user.uid,user.displayName)
       const newClass = await db.collection("classes").add({
+        
         creatorUid: user.uid,
         name: className,
-        creatorName: user.displayName,
+        coursecode: coursecode,
+        creatorName: creatorName,
         creatorPhoto: user.photoURL,
         posts: [],
       });
@@ -50,7 +54,8 @@ function CreateClass() {
       userClasses.push({
         id: newClass.id,
         name: className,
-        creatorName: user.displayName,
+        coursecode: coursecode,
+        creatorName: creatorName,
         creatorPhoto: user.photoURL,
       });
       const docRef = await db.collection("users").doc(docId);
@@ -87,6 +92,25 @@ function CreateClass() {
             value={className}
             onChange={(e) => setClassName(e.target.value)}
           />
+          <TextField
+            autoFocus
+            margin="dense"
+            label="Course Code"
+            type="text"
+            fullWidth
+            value={coursecode}
+            onChange={(e) => setcoursecode(e.target.value)}
+          />
+          <TextField
+            autoFocus
+            margin="dense"
+            label="Instructor Name"
+            type="text"
+            fullWidth
+            value={creatorName}
+            onChange={(e) => setcreatorName(e.target.value)}
+          />
+          
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">

@@ -1,9 +1,12 @@
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
+import { doc, getDoc } from "firebase/firestore";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate, useParams } from "react-router-dom";
 import Announcement from "../Components/Announcement";
+import CreateClass from "../Components/CreateClass";
+import JoinClass from "../Components/JoinClass";
 import { auth, db, storage } from "../firebase";
 import moment from 'moment';
 import { IconButton } from "@material-ui/core";
@@ -17,6 +20,7 @@ import { v4 } from "uuid";
 import "./Class.css";
 function Class() {
   const [classData, setClassData] = useState({});
+  const [cid, setcid] = useState("");
   const [announcementContent, setAnnouncementContent] = useState("");
   const [posts, setPosts] = useState([]);
   const [user, loading, error] = useAuthState(auth);
@@ -25,7 +29,8 @@ function Class() {
   const [fileType, setFileType] = useState("");
   const { id } = useParams();
   const history = useNavigate();
-
+  // const docRef = doc(db, "classes", )
+  // console.log(docRef)
   useEffect(() => {
     // reverse the array
     let reversedArray = classData?.posts?.reverse();
@@ -49,7 +54,7 @@ function Class() {
     });
     setFileUpload("")
   };
-
+  
   const createPost = async () => {
     if(announcementContent == "")
     {
@@ -58,8 +63,10 @@ function Class() {
     }
     try {
       const myClassRef = await db.collection("classes").doc(id).get();
+      console.log(myClassRef)
       const myClassData = await myClassRef.data();
       console.log(myClassData);
+      
       let tempPosts = myClassData.posts;
       tempPosts.push({
         authorId: user.uid,
@@ -82,11 +89,20 @@ function Class() {
       alert(`There was an error posting the announcement, please try again!`);
     }
   };
-
+  
+  const clid=db.collection("classes")
+      .doc(id)
+      .onSnapshot((snapshot) => {
+        const cid=id;
+        console.log(cid)
+        setcid(cid);
+      });
+  
   useEffect(() => {
     db.collection("classes")
       .doc(id)
       .onSnapshot((snapshot) => {
+        
         const data = snapshot.data();
         if (!data) history("/");
         // console.log(data);
@@ -104,6 +120,11 @@ function Class() {
     <div className="class">
       <div className="class__nameBox">
         <div className="class__name">{classData?.name}</div>
+        <div className="Instructors">
+          Instructors: {classData?.creatorName}
+          
+        </div>        
+        <div className="classID">Class Code: {cid}</div>
       </div>
       <div className="class__announce">
         <img src={user?.photoURL} alt="My image" />
