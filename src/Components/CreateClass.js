@@ -17,8 +17,8 @@ function CreateClass() {
   const [user, loading, error] = useAuthState(auth);
   const [open, setOpen] = useRecoilState(createDialogAtom);
   const [className, setClassName] = useState("");
-  const [creatorName, setcreatorName] = useState("")
-  const [coursecode, setcoursecode] = useState("")
+  const [creatorName, setCreatorName] = useState("");
+  const [coursecode, setcoursecode] = useState("");
   const handleClose = () => {
     setOpen(false);
   };
@@ -95,22 +95,21 @@ function CreateClass() {
           <TextField
             autoFocus
             margin="dense"
-            label="Course Code"
+            label="Instructor Name"
+            type="text"
+            fullWidth
+            value={creatorName}
+            onChange={(e) => setCreatorName(e.target.value)}
+          />
+          <TextField
+            autoFocus
+            margin="dense"
+            label="Class Name"
             type="text"
             fullWidth
             value={coursecode}
             onChange={(e) => setcoursecode(e.target.value)}
           />
-          <TextField
-            autoFocus
-            margin="dense"
-            label="Instructor Name"
-            type="text"
-            fullWidth
-            value={creatorName}
-            onChange={(e) => setcreatorName(e.target.value)}
-          />
-          
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">
