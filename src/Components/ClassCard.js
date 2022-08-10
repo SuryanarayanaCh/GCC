@@ -2,6 +2,7 @@ import { IconButton } from "@material-ui/core";
 import { AssignmentIndOutlined, FolderOpenOutlined } from "@material-ui/icons";
 import React from "react";
 import { useNavigate } from "react-router-dom";
+
 import "./ClassCard.css";
 function ClassCard({ name, creatorName, coursecode, creatorPhoto, id, style }) {
   const history = useNavigate();

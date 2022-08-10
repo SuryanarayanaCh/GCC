@@ -33,6 +33,10 @@ import CreateClass from "./CreateClass";
         //console(ref)
         const classData = await classRef.data();
         // add class to user
+        if(classData.creatorUid === user.uid)
+        {
+          return alert(`You are the Instructor of this class`)
+        }
         const userRef = await db.collection("users").where("uid", "==", user.uid);
         const userData = await (await userRef.get()).docs[0].data();
         let tempClassrooms = userData.enrolledClassrooms;
