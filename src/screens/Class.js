@@ -77,6 +77,7 @@ function Class() {
         fileType: fileType,
         image: user.photoURL,
         name: user.displayName,
+        creatorMail: user.email,
       });
       myClassRef.ref.update({
         posts: tempPosts,
@@ -122,10 +123,14 @@ function Class() {
         <div className="class__name">{classData?.name}</div>
         <div className="Instructors">
           Instructors: {classData?.creatorName}
-          
-        </div>        
+          </div>  
+               
         <div className="classID">Class Code: {cid}</div>
+        <div className="creatormail">
+          Contact: {classData?.creatorMail}
+         </div> 
       </div>
+      
       <div className="class__announce">
         <img src={user?.photoURL} alt="My image" />
         <input
