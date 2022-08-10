@@ -16,14 +16,14 @@ import { getStorage } from "firebase/storage";
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyD2l1YXTEGDh8hWJOnvvZ5BUIehEkOdqBs",
-  authDomain: "classroomclone-caeb7.firebaseapp.com",
-  projectId: "classroomclone-caeb7",
-  storageBucket: "classroomclone-caeb7.appspot.com",
-  messagingSenderId: "215612406762",
-  appId: "1:215612406762:web:7d0a44158800dd51d75093",
-  measurementId: "G-WF1J7P9099"
+  apiKey: "AIzaSyCxoH_5bpB2GyoWB7KSG8I5xTu6P2l1_Uo",
+  authDomain: "digiclassroom-312a3.firebaseapp.com",
+  projectId: "digiclassroom-312a3",
+  storageBucket: "digiclassroom-312a3.appspot.com",
+  messagingSenderId: "409663092273",
+  appId: "1:409663092273:web:37c8c227115786c6d28710"
 };
+
 
 // Initialize Firebase
 

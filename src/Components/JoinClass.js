@@ -7,6 +7,7 @@ import {
     DialogTitle,
     TextField,
   } from "@material-ui/core";
+import CreateClass from "./CreateClass";
   import React, { useState } from "react";
   import { useAuthState } from "react-firebase-hooks/auth";
   import { useRecoilState } from "recoil";
@@ -16,6 +17,7 @@ import {
     const [open, setOpen] = useRecoilState(joinDialogAtom);
     const [user, loading, error] = useAuthState(auth);
     const [classId, setClassId] = useState("");
+    
     const handleClose = () => {
       setOpen(false);
     };
@@ -23,6 +25,7 @@ import {
       try {
         // check if class exists
         const classRef = await db.collection("classes").doc(classId).get();
+        // console.log(classRef)
         if (!classRef.exists) {
           return alert(`Class doesn't exist, please provide correct ID`);
         }
