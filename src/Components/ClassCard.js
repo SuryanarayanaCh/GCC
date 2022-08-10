@@ -3,7 +3,7 @@ import { AssignmentIndOutlined, FolderOpenOutlined } from "@material-ui/icons";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./ClassCard.css";
-function ClassCard({ name, creatorName, coursecode, creatorPhoto, id, style }) {
+function ClassCard({ name, creatorName, coursecode, creatorPhoto, id, style,creatorMail }) {
   const history = useNavigate();
   const goToClass = () => {
     history(`/class/${id}`);
@@ -14,7 +14,6 @@ function ClassCard({ name, creatorName, coursecode, creatorPhoto, id, style }) {
         <div className="classCard__className">{name}</div>
         <div className="classCard__coursecode">{coursecode}</div>
         <div className="classCard__creatorName">{creatorName}</div>
-        
         <img src={creatorPhoto} className="classCard__creatorPhoto" />
       </div>
       <div className="classCard__middle"></div>
