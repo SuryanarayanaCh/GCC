@@ -47,6 +47,7 @@ function Dashboard() {
           {classes.map((individualClass, ind) => (
             <ClassCard
               creatorName={individualClass.creatorName}
+              coursecode={individualClass.coursecode}
               creatorPhoto={individualClass.creatorPhoto}
               name={individualClass.name}
               id={individualClass.id}

@@ -104,7 +104,7 @@ function CreateClass() {
           <TextField
             autoFocus
             margin="dense"
-            label="Class Name"
+            label="Course Code"
             type="text"
             fullWidth
             value={coursecode}
