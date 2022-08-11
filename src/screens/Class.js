@@ -21,6 +21,7 @@ function Class() {
   const [announcementContent, setAnnouncementContent] = useState("");
   const [posts, setPosts] = useState([]);
   const [user, loading, error] = useAuthState(auth);
+  const [creatorMail, setcreatorMail] = useState("");
   const [fileUpload, setFileUpload]=useState("");
   const [fileUrl, setFileUrl] = useState("");
   const [fileType, setFileType] = useState("");

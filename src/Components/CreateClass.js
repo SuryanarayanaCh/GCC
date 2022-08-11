@@ -117,15 +117,6 @@ function CreateClass() {
             value={coursecode}
             onChange={(e) => setcoursecode(e.target.value)}
           />
-          {/* <TextField
-            autoFocus
-            margin="dense"
-            label="Creator Mail"
-            type="text"
-            fullWidth
-            value={creatorMail}
-            onChange={(e) => setClassName(e.target.value)}
-          /> */}
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">

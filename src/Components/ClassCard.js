@@ -6,11 +6,9 @@ import "./ClassCard.css";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, db } from "../firebase";
   
-function ClassCard({ name, creatorName, coursecode, creatorPhoto, id, style,creatorMail }) {
+function ClassCard({ name, creatorName, coursecode, creatorPhoto, id, style }) {
   const [user, loading, error] = useAuthState(auth);
   const [classId, setClassId] = useState(id);
-  
-  
   const [classData,setClassData] = useState([]);
 
   useEffect(() =>{
@@ -18,15 +16,10 @@ function ClassCard({ name, creatorName, coursecode, creatorPhoto, id, style,crea
       const classRef = await db.collection("classes").doc(classId).get();
       const tempData = classRef.data();
       console.log(tempData);
-      
-  
      setClassData(tempData);
-    
     }
     if(classId!==""){getDocs();}
   },[classId]);
- 
- 
 
   const history = useNavigate();
   const goToClass = () => {
@@ -42,7 +35,6 @@ function ClassCard({ name, creatorName, coursecode, creatorPhoto, id, style,crea
           }
         </div>
         <div className="classCard__coursecode">{coursecode}</div>
-        {/* <div className="classCard__creatorMail">{creatorMail}</div> */}
        {classData.creatorUid !== user.uid && <div className="classCard__creatorName">{creatorName}</div>}
         
         <img src={creatorPhoto} className="classCard__creatorPhoto" />
