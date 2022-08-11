@@ -1,12 +1,9 @@
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
-import { doc, getDoc } from "firebase/firestore";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate, useParams } from "react-router-dom";
 import Announcement from "../Components/Announcement";
-import CreateClass from "../Components/CreateClass";
-import JoinClass from "../Components/JoinClass";
 import { auth, db, storage } from "../firebase";
 import moment from 'moment';
 import { IconButton } from "@material-ui/core";
