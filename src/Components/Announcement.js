@@ -30,7 +30,7 @@ function Announcement({ image, name, date, content, authorId, file, fileType }) 
       <div className="announcement__content">{content}</div>
       {
         (fileType === "jpg" || fileType === "jpeg" || fileType === "png") ?
-        <img src={file} style={{width:150, height:150, marginTop:10}} /> : (fileType == "pdf") ? <img src={pdfLogo} className="pdf__logo" onClick = {() => gotoPdf(file)}/> :(fileType == "") ? <div>No file attached</div>: <div>file not supported</div>
+        <img src={file} style={{width:150, height:150, marginTop:10}} /> : (fileType == "pdf") ? <img src={pdfLogo} className="pdf__logo" onClick = {() => gotoPdf(file)}/> :(fileType == "") ? <div></div>: <div>file not supported</div>
       }
     </div>
   );

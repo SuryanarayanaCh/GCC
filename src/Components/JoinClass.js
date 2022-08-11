@@ -43,6 +43,7 @@ import CreateClass from "./CreateClass";
         tempClassrooms.push({
           creatorName: classData.creatorName,
           creatorPhoto: classData.creatorPhoto,
+          coursecode: classData.coursecode,
           id: classId,
           name: classData.name,
         });

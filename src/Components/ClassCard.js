@@ -11,11 +11,13 @@ function ClassCard({ name, creatorName, coursecode, creatorPhoto, id, style }) {
   const [classId, setClassId] = useState(id);
   const [classData,setClassData] = useState([]);
 
+  // console.log(classData.coursecode);
+
   useEffect(() =>{
     const getDocs = async () => {
       const classRef = await db.collection("classes").doc(classId).get();
       const tempData = classRef.data();
-      console.log(tempData);
+      // console.log(tempData);
      setClassData(tempData);
     }
     if(classId!==""){getDocs();}
@@ -34,8 +36,8 @@ function ClassCard({ name, creatorName, coursecode, creatorPhoto, id, style }) {
           <img src="https://upload.wikimedia.org/wikipedia/commons/8/83/Gold_Star_%28with_border%29.svg" className="star"/>
           }
         </div>
-        <div className="classCard__coursecode">{coursecode}</div>
-       {classData.creatorUid !== user.uid && <div className="classCard__creatorName">{creatorName}</div>}
+        <div className="classCard__coursecode">{classData.coursecode}</div>
+        {classData.creatorUid !== user.uid && <div className="classCard__creatorName">{creatorName}</div>}
         
         <img src={creatorPhoto} className="classCard__creatorPhoto" />
       </div>
