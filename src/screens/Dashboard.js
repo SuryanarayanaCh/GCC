@@ -48,6 +48,7 @@ function Dashboard() {
             <ClassCard
               creatorName={individualClass.creatorName}
               coursecode={individualClass.coursecode}
+              creatorMail={individualClass.creatorMail}
               creatorPhoto={individualClass.creatorPhoto}
               name={individualClass.name}
               id={individualClass.id}
