@@ -11,6 +11,9 @@ function Dashboard() {
   const [user, loading, error] = useAuthState(auth);
   const [classes, setClasses] = useState([]);
   const navigate= useNavigate();
+
+  console.log(classes);
+
   const fetchClasses = async () => {
     try {
        db
@@ -32,7 +35,7 @@ function Dashboard() {
     fetchClasses();
   }, [user, loading]);
 
-  console.log(user)
+  // console.log(user)
 
   return (
     <>
