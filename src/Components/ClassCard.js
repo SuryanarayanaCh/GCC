@@ -6,7 +6,7 @@ import "./ClassCard.css";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, db } from "../firebase";
   
-function ClassCard({ name, creatorName, coursecode, creatorPhoto, id, style }) {
+function ClassCard({ name, creatorName, coursecode, creatorPhoto, id, style,creatorMail }) {
   const [user, loading, error] = useAuthState(auth);
   const [classId, setClassId] = useState(id);
   
@@ -42,6 +42,7 @@ function ClassCard({ name, creatorName, coursecode, creatorPhoto, id, style }) {
           }
         </div>
         <div className="classCard__coursecode">{coursecode}</div>
+        {/* <div className="classCard__creatorMail">{creatorMail}</div> */}
        {classData.creatorUid !== user.uid && <div className="classCard__creatorName">{creatorName}</div>}
         
         <img src={creatorPhoto} className="classCard__creatorPhoto" />

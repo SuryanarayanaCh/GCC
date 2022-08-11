@@ -19,6 +19,7 @@ function CreateClass() {
   const [className, setClassName] = useState("");
   const [creatorName, setCreatorName] = useState("");
   const [coursecode, setcoursecode] = useState("");
+  const [creatorMail, setcreatorMail] = useState("");
   const handleClose = () => {
     setOpen(false);
   };
@@ -27,6 +28,10 @@ function CreateClass() {
       if(user.displayName == null)
       {
         user.displayName = "gcpuser"
+      }
+      if(user.email == null)
+      {
+        user.email = "gcpuser"
       }
       if(user.photoURL == null)
       {
@@ -40,6 +45,7 @@ function CreateClass() {
         coursecode: coursecode,
         creatorName: creatorName,
         creatorPhoto: user.photoURL,
+        creatorMail: user.email,
         posts: [],
       });
       console.log(newClass);
@@ -57,7 +63,7 @@ function CreateClass() {
         coursecode: coursecode,
         creatorName: creatorName,
         creatorPhoto: user.photoURL,
-      
+        creatorMail: user.email,
       });
       const docRef = await db.collection("users").doc(docId);
       await docRef.update({
@@ -111,7 +117,15 @@ function CreateClass() {
             value={coursecode}
             onChange={(e) => setcoursecode(e.target.value)}
           />
-          
+          {/* <TextField
+            autoFocus
+            margin="dense"
+            label="Creator Mail"
+            type="text"
+            fullWidth
+            value={creatorMail}
+            onChange={(e) => setClassName(e.target.value)}
+          /> */}
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">
